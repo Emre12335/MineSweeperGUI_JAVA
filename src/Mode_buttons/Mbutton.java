@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Mbutton extends JButton implements ActionListener {
-    public static int mode;
+    public static volatile int mode;
     int own_mode;
     static Color blue1 = new Color(63,93,117);
     static Color blue2 = new Color(46,78,99);
