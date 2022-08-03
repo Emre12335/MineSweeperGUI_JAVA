@@ -72,11 +72,13 @@ public class Main {
             mf.remove(centerpanel);
             mf.remove(westpanel);
             mf.remove(eastpanel);
-            westpanel.setPreferredSize(new Dimension(10,700));
-            eastpanel.setPreferredSize(new Dimension(10,700));
+            JPanel nwp = new JPanel();
+            JPanel nep = new JPanel();
+            nwp.setPreferredSize(new Dimension(10,700));
+            nep.setPreferredSize(new Dimension(10,700));
             mf.add(ng.centerpanel,BorderLayout.CENTER);
-            mf.add(westpanel,BorderLayout.WEST);
-            mf.add(eastpanel,BorderLayout.EAST);
+            mf.add(nwp,BorderLayout.WEST);
+            mf.add(nep,BorderLayout.EAST);
             mf.revalidate();
             mf.repaint();
         }

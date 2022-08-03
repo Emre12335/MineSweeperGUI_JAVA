@@ -64,8 +64,10 @@ public class Game implements MouseListener{
                 mine_count = 100;
                 flag = flag3;
                 mine = mine3;
+                break;
             default:
                 System.out.println("Something went wrong");
+                break;
 
         }
         centerpanel.setLayout(new GridLayout(this.rows,this.columns));
