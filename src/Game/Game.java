@@ -9,6 +9,8 @@ import java.awt.event.*;
 import java.util.Random;
 
 
+/* Game class for screen with mines */
+/* we will add mines to instance variable centerpanel inside game */
 public class Game implements MouseListener{
     static Color blue1 = new Color(63,93,117);
     static Color blue2 = new Color(46,78,99);
@@ -85,7 +87,7 @@ public class Game implements MouseListener{
 
 
     }
-
+/* After clcikig first mine we will generate mines according to first mines position */
     public void generateMines(int row,int column){
         int total_nums = this.rows * this.columns;
         Random rand = new Random();
@@ -112,6 +114,7 @@ public class Game implements MouseListener{
         }
     }
 
+    /* this is just for printing answer in show_answer */
     public void open_one_mine(int row,int column){
         this.mine_list[row][column].setVisiblty(true);
         this.mine_list[row][column].setFlag(false);
@@ -142,7 +145,7 @@ public class Game implements MouseListener{
 
 
     }
-
+    /* method for opening mines while playing game */
     public void open_mine_in_game(int row,int column){
         switch(this.mine_list[row][column].getDistance()){
             case -1:
@@ -190,6 +193,7 @@ public class Game implements MouseListener{
 
 
     }
+    /* increases number of the meighbours of the specific mine location */
     @SuppressWarnings("all")
     public void attempt_mine(int row,int column){
         for (int i = row-1; i <= row+1; i++) {
@@ -201,6 +205,7 @@ public class Game implements MouseListener{
 
         }
     }
+    /* atttempts mine for all and prepares game */
     public void attempt_mines(){
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -210,7 +215,7 @@ public class Game implements MouseListener{
             }
         }
     }
-
+    /* in game end shows answer */
     public void show_answer(){
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -222,7 +227,7 @@ public class Game implements MouseListener{
     public void mouseClicked(MouseEvent e) {
 
     }
-
+    /* left click opens mine in game right click flags */
     @Override
     public void mousePressed(MouseEvent e) {
         Mine but = (Mine) e.getComponent();
@@ -262,6 +267,7 @@ public class Game implements MouseListener{
     public void mouseReleased(MouseEvent e) {
     }
 
+    /* if mouse enters to non flagged non visible mine it changes color */
     @Override
     public void mouseEntered(MouseEvent e) {
         Mine but = (Mine) e.getComponent();
@@ -269,7 +275,7 @@ public class Game implements MouseListener{
             but.setBackground(blue4);
         }
     }
-
+    /* if mouse exits from non flagged non visible mine it changes color */
     @Override
     public void mouseExited(MouseEvent e) {
         Mine but = (Mine) e.getComponent();
