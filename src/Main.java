@@ -1,11 +1,19 @@
 import java.awt.*;
 import Game.Game;
-import MainMenu.MainMenu;
+import MyComboBox.MyComboBoxEditor;
+import MyComboBox.MyComboBoxRenderer;
+
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 public class Main {
-    static JFrame mf = new JFrame();
+    static JFrame mf = new JFrame("Minesweeper");
+    static JPanel uppanel = new JPanel();
+    static JPanel downpanel = new JPanel();
+    static JPanel westpanel = new JPanel();
+    static JPanel eastpanel = new JPanel();
+    static JPanel centerpanel = new JPanel();
+    static Game ng;
+
     static Color blue1 = new Color(63,93,117);
     static Color blue2 = new Color(46,78,99);
     static Color ground_color = new Color(195,195,195);
@@ -14,7 +22,6 @@ public class Main {
         /* First screen player will choice game mode */
 
         /* Main screen for both level screen and game screen */
-        
         mf.setVisible(true);
         mf.setResizable(true);
         ImageIcon icon = new ImageIcon("images/new_mine.jpg");
@@ -25,54 +32,107 @@ public class Main {
         mf.setLayout(new BorderLayout());
         /* ----------------------------------------- */
 
+        /* ------------ */
+        String [] boxOptions = {"Easy","Medium","Hard"};
+        JComboBox<String> cb = new JComboBox<>(boxOptions);
+        cb.setPreferredSize(new Dimension(200,50));
+        cb.setEditable(true);
+        cb.setRenderer(new MyComboBoxRenderer());
+        cb.setEditor(new MyComboBoxEditor());
+
+        cb.addActionListener(e -> {
+            if(e.getSource() == cb){
+                String msg = (String)cb.getSelectedItem();
+                if (msg != null) {
+                    switch (msg){
+                        case "Easy":
+                            ng = new Game(1,700,700);
+                            mf.remove(centerpanel);
+                            mf.remove(westpanel);
+                            mf.remove(eastpanel);
+                            westpanel = new JPanel();
+                            eastpanel = new JPanel();
+                            eastpanel.setBackground(ground_color);
+                            westpanel.setBackground(ground_color);
+                            centerpanel = ng.centerpanel;
+                            westpanel.setPreferredSize(new Dimension(200,700));
+                            eastpanel.setPreferredSize(new Dimension(200,700));
+                            mf.add(centerpanel,BorderLayout.CENTER);
+                            mf.add(westpanel,BorderLayout.WEST);
+                            mf.add(eastpanel,BorderLayout.EAST);
+                            mf.revalidate();
+                            mf.repaint();
+                            break;
+                        case "Medium":
+                            ng = new Game(2,700,700);
+                            mf.remove(centerpanel);
+                            mf.remove(westpanel);
+                            mf.remove(eastpanel);
+                            westpanel = new JPanel();
+                            eastpanel = new JPanel();
+                            eastpanel.setBackground(ground_color);
+                            westpanel.setBackground(ground_color);
+                            centerpanel = ng.centerpanel;
+                            westpanel.setPreferredSize(new Dimension(200,700));
+                            eastpanel.setPreferredSize(new Dimension(200,700));
+                            mf.add(westpanel,BorderLayout.WEST);
+                            mf.add(eastpanel,BorderLayout.EAST);
+                            mf.add(centerpanel,BorderLayout.CENTER);
+                            mf.revalidate();
+                            mf.repaint();
+                            break;
+                        case "Hard":
+                            ng = new Game(3,700,1080);
+                            mf.remove(centerpanel);
+                            mf.remove(westpanel);
+                            mf.remove(eastpanel);
+                            westpanel = new JPanel();
+                            eastpanel = new JPanel();
+                            eastpanel.setBackground(ground_color);
+                            westpanel.setBackground(ground_color);
+                            centerpanel = ng.centerpanel;
+                            westpanel.setPreferredSize(new Dimension(10,700));
+                            eastpanel.setPreferredSize(new Dimension(10,700));
+                            mf.add(westpanel,BorderLayout.WEST);
+                            mf.add(eastpanel,BorderLayout.EAST);
+                            mf.add(centerpanel,BorderLayout.CENTER);
+                            mf.revalidate();
+                            mf.repaint();
+                            break;
+
+                    }
+                }
+            }
+        });
+        cb.setSelectedIndex(0);
+
         /* Panels for border layout */
-        MainMenu nm = new MainMenu(700,700);
-        JPanel uppanel = new JPanel();
+
+
         uppanel.setPreferredSize(new Dimension(100,150));
         uppanel.setBackground(ground_color);
-        JPanel downpanel = new JPanel();
+
         downpanel.setBackground(ground_color);
         downpanel.setPreferredSize(new Dimension(100,100));
-        JPanel westpanel = new JPanel();
+
         westpanel.setBackground(ground_color);
         westpanel.setPreferredSize(new Dimension(200,700));
-        JPanel eastpanel = new JPanel();
+
         eastpanel.setBackground(ground_color);
         eastpanel.setPreferredSize(new Dimension(200,700));
+
+        uppanel.add(cb);
+        uppanel.add(Box.createVerticalStrut(170));
+
 
         /* adding panels to main screen */
         mf.add(uppanel,BorderLayout.NORTH);
         mf.add(downpanel,BorderLayout.SOUTH);
         mf.add(westpanel,BorderLayout.WEST);
         mf.add(eastpanel,BorderLayout.EAST);
-        mf.add(nm.centerpanel,BorderLayout.CENTER);
-        mf.setVisible(true);
-        while (nm.mode == 0){
-        }
+        mf.setVisible(true);}
 
 
-        /*I want panel size to be according to game mode that is why i used if else*/
-        if(nm.mode == 3){
-            Game ng = new Game(3,700,1080);
-            mf.remove(nm.centerpanel);
-            mf.remove(westpanel);
-            mf.remove(eastpanel);
-            JPanel nwp = new JPanel();
-            JPanel nep = new JPanel();
-            nwp.setPreferredSize(new Dimension(10,700));
-            nep.setPreferredSize(new Dimension(10,700));
-            mf.add(ng.centerpanel,BorderLayout.CENTER);
-            mf.add(nwp,BorderLayout.WEST);
-            mf.add(nep,BorderLayout.EAST);
-            mf.revalidate();
-            mf.repaint();
-        }
-        else{
-            Game ng = new Game(nm.mode,700,700);
-            mf.remove(nm.centerpanel);
-            mf.add(ng.centerpanel,BorderLayout.CENTER);
-            mf.revalidate();
-            mf.repaint();}
-    }
+
 
 }
