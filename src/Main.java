@@ -17,6 +17,7 @@ public class Main {
     static Color blue1 = new Color(63,93,117);
     static Color blue2 = new Color(46,78,99);
     static Color ground_color = new Color(195,195,195);
+    static Color ground_color2 = new Color(211,209,210);
     public static void main(String[] args) {
         /* Difficulty*/
         /* First screen player will choice game mode */
@@ -105,6 +106,7 @@ public class Main {
             }
         });
         cb.setSelectedIndex(0);
+        cb.getEditor().getEditorComponent().setBackground(ground_color2);
 
         /* Panels for border layout */
 

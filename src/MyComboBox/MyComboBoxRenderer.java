@@ -13,7 +13,7 @@ public class MyComboBoxRenderer extends JLabel implements ListCellRenderer{
     static Color blue3 = new Color(63,97,117);
 
     static Color blue4 = new Color(184,207,229);
-    static Color ground_color = new Color(211,209,211);
+    static Color ground_color = new Color(211,209,210);
 
     public MyComboBoxRenderer() {
         setOpaque(true);
