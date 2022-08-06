@@ -6,6 +6,7 @@ import MyComboBox.MyComboBoxRenderer;
 import javax.swing.*;
 
 public class Main {
+    static JLabel label;
     static JFrame mf = new JFrame("Minesweeper");
     static JPanel uppanel = new JPanel();
     static JPanel downpanel = new JPanel();
@@ -40,7 +41,8 @@ public class Main {
         cb.setEditable(true);
         cb.setRenderer(new MyComboBoxRenderer());
         cb.setEditor(new MyComboBoxEditor());
-
+        uppanel.add(Box.createVerticalStrut(170));
+        uppanel.add(cb);
         cb.addActionListener(e -> {
             if(e.getSource() == cb){
                 String msg = (String)cb.getSelectedItem();
@@ -61,6 +63,8 @@ public class Main {
                             mf.add(centerpanel,BorderLayout.CENTER);
                             mf.add(westpanel,BorderLayout.WEST);
                             mf.add(eastpanel,BorderLayout.EAST);
+                            if(label == null){label = ng.flag_label;uppanel.add(label);}
+                            else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
                             mf.revalidate();
                             mf.repaint();
                             break;
@@ -79,8 +83,11 @@ public class Main {
                             mf.add(westpanel,BorderLayout.WEST);
                             mf.add(eastpanel,BorderLayout.EAST);
                             mf.add(centerpanel,BorderLayout.CENTER);
+                            if(label == null){label = ng.flag_label;uppanel.add(label);}
+                            else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
                             mf.revalidate();
                             mf.repaint();
+
                             break;
                         case "Hard":
                             ng = new Game(3,700,1080);
@@ -97,6 +104,8 @@ public class Main {
                             mf.add(westpanel,BorderLayout.WEST);
                             mf.add(eastpanel,BorderLayout.EAST);
                             mf.add(centerpanel,BorderLayout.CENTER);
+                            if(label == null){label = ng.flag_label;uppanel.add(label);}
+                            else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
                             mf.revalidate();
                             mf.repaint();
                             break;
@@ -123,8 +132,8 @@ public class Main {
         eastpanel.setBackground(ground_color);
         eastpanel.setPreferredSize(new Dimension(200,700));
 
-        uppanel.add(cb);
-        uppanel.add(Box.createVerticalStrut(170));
+
+
 
 
         /* adding panels to main screen */

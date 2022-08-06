@@ -22,6 +22,7 @@ public class Game implements MouseListener{
     static ImageIcon flag2 = new ImageIcon("images/flag4.jpg");
     static ImageIcon flag1 = new ImageIcon("images/flag5.jpg");
     static ImageIcon flag3 = new ImageIcon("images/flag8.jpg");
+    static ImageIcon flag4 = new ImageIcon("images/flag_gray1.jpg");
 
     static ImageIcon flag;
     static ImageIcon mine;
@@ -31,10 +32,12 @@ public class Game implements MouseListener{
     static ImageIcon mine1 = new ImageIcon("images/new_mine2.jpg");
 
     public JPanel centerpanel = new JPanel();
+    public JLabel flag_label;
     public Mine[][] mine_list;
     int rows;
     int columns;
     int mine_count;
+    int final_mine_count;
     int mine_opened = 0;
 
     boolean game_end = false;
@@ -42,30 +45,60 @@ public class Game implements MouseListener{
         centerpanel.setPreferredSize(new Dimension(width,depth));
         centerpanel.setBackground(blue3);
         centerpanel.setBorder(BorderFactory.createLineBorder(blue2,4));
+
+
         switch (mode){
             case 1:
                 rows = 9;
                 columns = 9;
                 mine_list = new Mine[9][9];
                 mine_count = 10;
+                final_mine_count = 10;
                 flag = flag1;
                 mine = mine1;
+                flag_label = new JLabel(Integer.toString(mine_count),flag4,SwingConstants.RIGHT);
+                flag_label.setFont(new Font("Arial",Font.BOLD,50));
+                flag_label.setForeground(blue3);
+                flag_label.setIconTextGap(-10);
+                flag_label.setVerticalTextPosition(SwingConstants.CENTER);
+                flag_label.setHorizontalTextPosition(SwingConstants.RIGHT);
+
+
                 break;
             case 2:
                 rows = 16;
                 columns = 16;
                 mine_list = new Mine[16][16];
                 mine_count = 40;
+                final_mine_count = 40;
                 flag  = flag2;
                 mine = mine2;
+                flag_label = new JLabel(Integer.toString(mine_count),flag4,SwingConstants.LEFT);
+                flag_label.setFont(new Font("Arial",Font.BOLD,50));
+                flag_label.setForeground(blue3);
+                flag_label.setIconTextGap(-10);
+                flag_label.setVerticalTextPosition(SwingConstants.CENTER);
+                flag_label.setHorizontalTextPosition(SwingConstants.RIGHT);
+
+
                 break;
             case 3:
                 rows = 16;
                 columns = 30;
                 mine_list = new Mine[16][30];
                 mine_count = 100;
+                final_mine_count = 100;
                 flag = flag3;
                 mine = mine3;
+                flag_label = new JLabel(Integer.toString(mine_count),flag4,SwingConstants.LEFT);
+                flag_label.setFont(new Font("Arial",Font.BOLD,50));
+                flag_label.setForeground(blue3);
+                flag_label.setIconTextGap(-10);
+                flag_label.setVerticalTextPosition(SwingConstants.CENTER);
+                flag_label.setHorizontalTextPosition(SwingConstants.RIGHT);
+
+
+
                 break;
             default:
                 System.out.println("Something went wrong");
@@ -94,7 +127,7 @@ public class Game implements MouseListener{
         int num = rand.nextInt(total_nums);
         int nrow = num / this.columns;
         int ncolumn = num % this.columns;
-        int mine_count1 = this.mine_count;
+        int mine_count1 = this.final_mine_count;
 
         while(mine_count1 > 0){
             if(nrow >= row-1 && nrow <= row+1 && ncolumn >= column-1 && ncolumn <= column+1){
@@ -155,6 +188,7 @@ public class Game implements MouseListener{
                 this.mine_list[row][column].setIcon(null);
                 this.mine_list[row][column].setDisabledIcon(null);
                 this.mine_list[row][column].setVisiblty(true);
+                if(this.mine_list[row][column].getFlag()){mine_count++;flag_label.setText(Integer.toString(mine_count));}
                 this.mine_list[row][column].setFlag(false);
                 this.mine_list[row][column].setEnabled(false);
                 this.mine_list[row][column].setBackground(ground_color);
@@ -171,6 +205,7 @@ public class Game implements MouseListener{
             default:
                 this.mine_list[row][column].setIcon(null);
                 this.mine_list[row][column].setDisabledIcon(null);
+                if(this.mine_list[row][column].getFlag()){mine_count++;flag_label.setText(Integer.toString(mine_count));}
                 this.mine_list[row][column].setFlag(false);
                 this.mine_list[row][column].setVisiblty(true);
                 this.mine_list[row][column].setEnabled(false);
@@ -186,7 +221,7 @@ public class Game implements MouseListener{
                 this.mine_list[row][column].setBorder(BorderFactory.createLineBorder(blue2,2));
                 break;
         }
-        if(this.mine_opened == this.rows * this.columns - this.mine_count ){
+        if(this.mine_opened == this.rows * this.columns - this.final_mine_count ){
             this.game_end = true;
             show_answer();
         }
@@ -250,13 +285,18 @@ public class Game implements MouseListener{
                 but.setBackground(blue4);
                 but.revalidate();
                 but.setIcon(flag);
-                but.setDisabledIcon(flag);}
+                but.setDisabledIcon(flag);
+                mine_count--;
+                flag_label.setText(Integer.toString(mine_count));
+            }
             else if(but.getFlag() && !but.getVisiblty() && !this.game_end){
                 but.setEnabled(true);
                 but.setFlag(false);
                 but.setDisabledIcon(null);
                 but.setIcon(null);
                 but.setBackground(blue4);
+                mine_count++;
+                flag_label.setText(Integer.toString(mine_count));
             }
         }
 
