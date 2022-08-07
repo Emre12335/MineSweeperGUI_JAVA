@@ -20,6 +20,7 @@ public class Game implements MouseListener{
 
     static Color blue4 = new Color(184,207,229);
     static Color ground_color = new Color(211,209,211);
+    static Color ground_color2 = new Color(195,195,195);
     static ImageIcon flag2 = new ImageIcon("images/flag4.jpg");
     static ImageIcon flag1 = new ImageIcon("images/flag5.jpg");
     static ImageIcon flag3 = new ImageIcon("images/flag8.jpg");
@@ -34,6 +35,7 @@ public class Game implements MouseListener{
 
     public JPanel centerpanel = new JPanel();
     public JLabel flag_label;
+    public JLabel flag_image_label  =new JLabel(flag4);
     public Stopwatch sw1;
     public Mine[][] mine_list;
     int rows;
@@ -47,8 +49,8 @@ public class Game implements MouseListener{
         centerpanel.setPreferredSize(new Dimension(width,depth));
         centerpanel.setBackground(blue3);
         centerpanel.setBorder(BorderFactory.createLineBorder(blue2,4));
-        sw1 = new Stopwatch(200,200,ground_color,blue3);
-
+        sw1 = new Stopwatch(200,50,blue3);
+        flag_image_label.setPreferredSize(new Dimension(50,50));
 
         switch (mode){
             case 1:
@@ -59,12 +61,16 @@ public class Game implements MouseListener{
                 final_mine_count = 10;
                 flag = flag1;
                 mine = mine1;
-                flag_label = new JLabel(Integer.toString(mine_count),flag4,SwingConstants.RIGHT);
+                flag_label = new JLabel(Integer.toString(mine_count));
                 flag_label.setFont(new Font("Arial",Font.BOLD,50));
                 flag_label.setForeground(blue3);
-                flag_label.setIconTextGap(-10);
+                flag_label.setOpaque(true);
+                flag_label.setBackground(ground_color2);
+                flag_label.setPreferredSize(new Dimension(57,50));
                 flag_label.setVerticalTextPosition(SwingConstants.CENTER);
-                flag_label.setHorizontalTextPosition(SwingConstants.RIGHT);
+                flag_label.setHorizontalTextPosition(SwingConstants.CENTER);
+                flag_label.setVerticalAlignment(SwingConstants.CENTER);
+                flag_label.setHorizontalAlignment(SwingConstants.CENTER);
 
 
                 break;
@@ -76,12 +82,16 @@ public class Game implements MouseListener{
                 final_mine_count = 40;
                 flag  = flag2;
                 mine = mine2;
-                flag_label = new JLabel(Integer.toString(mine_count),flag4,SwingConstants.LEFT);
+                flag_label = new JLabel(Integer.toString(mine_count));
                 flag_label.setFont(new Font("Arial",Font.BOLD,50));
+                flag_label.setOpaque(true);
+                flag_label.setBackground(ground_color2);
+                flag_label.setPreferredSize(new Dimension(63,50));
                 flag_label.setForeground(blue3);
-                flag_label.setIconTextGap(-10);
                 flag_label.setVerticalTextPosition(SwingConstants.CENTER);
-                flag_label.setHorizontalTextPosition(SwingConstants.RIGHT);
+                flag_label.setHorizontalTextPosition(SwingConstants.CENTER);
+                flag_label.setVerticalAlignment(SwingConstants.CENTER);
+                flag_label.setHorizontalAlignment(SwingConstants.CENTER);
 
 
                 break;
@@ -93,15 +103,16 @@ public class Game implements MouseListener{
                 final_mine_count = 100;
                 flag = flag3;
                 mine = mine3;
-                flag_label = new JLabel(Integer.toString(mine_count),flag4,SwingConstants.LEFT);
+                flag_label = new JLabel(Integer.toString(mine_count));
                 flag_label.setFont(new Font("Arial",Font.BOLD,50));
+                flag_label.setOpaque(true);
+                flag_label.setBackground(ground_color2);
+                flag_label.setPreferredSize(new Dimension(85,50));
                 flag_label.setForeground(blue3);
-                flag_label.setIconTextGap(-10);
                 flag_label.setVerticalTextPosition(SwingConstants.CENTER);
-                flag_label.setHorizontalTextPosition(SwingConstants.RIGHT);
-
-
-
+                flag_label.setHorizontalTextPosition(SwingConstants.CENTER);
+                flag_label.setVerticalAlignment(SwingConstants.CENTER);
+                flag_label.setHorizontalAlignment(SwingConstants.CENTER);
                 break;
             default:
                 System.out.println("Something went wrong");

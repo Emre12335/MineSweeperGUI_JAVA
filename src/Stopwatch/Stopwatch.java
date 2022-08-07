@@ -33,11 +33,11 @@ public class Stopwatch extends JLabel {
         }
     });
 
-    public Stopwatch(int width,int height,Color bg,Color fg){
+    public Stopwatch(int width,int height,Color fg){
         this.setText(Second_str);
         this.setHorizontalTextPosition(SwingConstants.CENTER);
         this.setVerticalTextPosition(SwingConstants.CENTER);
-        this.setBackground(bg);
+        this.setHorizontalAlignment(SwingConstants.CENTER);
         this.setForeground(fg);
         this.setPreferredSize(new Dimension(width,height));
         this.setFont(new Font("Arial", Font.BOLD,40));

@@ -9,6 +9,8 @@ import javax.swing.*;
 public class Main {
     static JLabel label;
     static Stopwatch sw;
+
+    static JLabel filabel;
     static JFrame mf = new JFrame("Minesweeper");
     static JPanel uppanel = new JPanel();
     static JPanel downpanel = new JPanel();
@@ -45,6 +47,12 @@ public class Main {
         cb.setEditor(new MyComboBoxEditor());
         uppanel.add(Box.createVerticalStrut(170));
         uppanel.add(cb);
+
+        /* Horizontal structs for between componenets */
+        Component cb_flagl = Box.createHorizontalStrut(150);
+        Component flagl_sw = Box.createHorizontalStrut(20);
+
+
         cb.addActionListener(e -> {
             if(e.getSource() == cb){
                 String msg = (String)cb.getSelectedItem();
@@ -65,10 +73,33 @@ public class Main {
                             mf.add(centerpanel,BorderLayout.CENTER);
                             mf.add(westpanel,BorderLayout.WEST);
                             mf.add(eastpanel,BorderLayout.EAST);
-                            if(label == null){label = ng.flag_label;uppanel.add(label);}
-                            else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
-                            if(sw == null){sw = ng.sw1;uppanel.add(sw);}
-                            else{uppanel.remove(sw);sw = ng.sw1;uppanel.add(sw);}
+                            if(label == null){
+                                uppanel.add(cb_flagl);
+                                label = ng.flag_label;
+                                filabel = ng.flag_image_label;
+                                uppanel.add(filabel);
+                                uppanel.add(label);
+                            }
+                            else{
+                                uppanel.remove(filabel);
+                                uppanel.remove(label);
+                                uppanel.remove(cb_flagl);
+                                label = ng.flag_label;
+                                uppanel.add(cb_flagl);
+                                uppanel.add(filabel);
+                                uppanel.add(label);}
+                            if(sw == null){
+                                uppanel.add(flagl_sw);
+                                sw = ng.sw1;
+                                uppanel.add(sw);
+                            }
+                            else{
+                                uppanel.remove(flagl_sw);
+                                uppanel.remove(sw);
+                                sw = ng.sw1;
+                                uppanel.add(flagl_sw);
+                                uppanel.add(sw);
+                            }
                             mf.revalidate();
                             mf.repaint();
                             break;
@@ -87,10 +118,33 @@ public class Main {
                             mf.add(westpanel,BorderLayout.WEST);
                             mf.add(eastpanel,BorderLayout.EAST);
                             mf.add(centerpanel,BorderLayout.CENTER);
-                            if(label == null){label = ng.flag_label;uppanel.add(label);}
-                            else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
-                            if(sw == null){sw = ng.sw1;uppanel.add(sw);}
-                            else{uppanel.remove(sw);sw = ng.sw1;uppanel.add(sw);}
+                            if(label == null){
+                                uppanel.add(cb_flagl);
+                                label = ng.flag_label;
+                                filabel = ng.flag_image_label;
+                                uppanel.add(filabel);
+                                uppanel.add(label);
+                            }
+                            else{
+                                uppanel.remove(filabel);
+                                uppanel.remove(label);
+                                uppanel.remove(cb_flagl);
+                                label = ng.flag_label;
+                                uppanel.add(cb_flagl);
+                                uppanel.add(filabel);
+                                uppanel.add(label);}
+                            if(sw == null){
+                                uppanel.add(flagl_sw);
+                                sw = ng.sw1;
+                                uppanel.add(sw);
+                            }
+                            else{
+                                uppanel.remove(flagl_sw);
+                                uppanel.remove(sw);
+                                sw = ng.sw1;
+                                uppanel.add(flagl_sw);
+                                uppanel.add(sw);
+                            }
                             mf.revalidate();
                             mf.repaint();
 
@@ -110,10 +164,33 @@ public class Main {
                             mf.add(westpanel,BorderLayout.WEST);
                             mf.add(eastpanel,BorderLayout.EAST);
                             mf.add(centerpanel,BorderLayout.CENTER);
-                            if(label == null){label = ng.flag_label;uppanel.add(label);}
-                            else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
-                            if(sw == null){sw = ng.sw1;uppanel.add(sw);}
-                            else{uppanel.remove(sw);sw = ng.sw1;uppanel.add(sw);}
+                            if(label == null){
+                                uppanel.add(cb_flagl);
+                                label = ng.flag_label;
+                                filabel = ng.flag_image_label;
+                                uppanel.add(filabel);
+                                uppanel.add(label);
+                            }
+                            else{
+                                uppanel.remove(filabel);
+                                uppanel.remove(label);
+                                uppanel.remove(cb_flagl);
+                                label = ng.flag_label;
+                                uppanel.add(cb_flagl);
+                                uppanel.add(filabel);
+                                uppanel.add(label);}
+                            if(sw == null){
+                                uppanel.add(flagl_sw);
+                                sw = ng.sw1;
+                                uppanel.add(sw);
+                            }
+                            else{
+                                uppanel.remove(flagl_sw);
+                                uppanel.remove(sw);
+                                sw = ng.sw1;
+                                uppanel.add(flagl_sw);
+                                uppanel.add(sw);
+                            }
                             mf.revalidate();
                             mf.repaint();
                             break;
