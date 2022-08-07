@@ -2,11 +2,13 @@ import java.awt.*;
 import Game.Game;
 import MyComboBox.MyComboBoxEditor;
 import MyComboBox.MyComboBoxRenderer;
+import Stopwatch.Stopwatch;
 
 import javax.swing.*;
 
 public class Main {
     static JLabel label;
+    static Stopwatch sw;
     static JFrame mf = new JFrame("Minesweeper");
     static JPanel uppanel = new JPanel();
     static JPanel downpanel = new JPanel();
@@ -65,6 +67,8 @@ public class Main {
                             mf.add(eastpanel,BorderLayout.EAST);
                             if(label == null){label = ng.flag_label;uppanel.add(label);}
                             else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
+                            if(sw == null){sw = ng.sw1;uppanel.add(sw);}
+                            else{uppanel.remove(sw);sw = ng.sw1;uppanel.add(sw);}
                             mf.revalidate();
                             mf.repaint();
                             break;
@@ -85,6 +89,8 @@ public class Main {
                             mf.add(centerpanel,BorderLayout.CENTER);
                             if(label == null){label = ng.flag_label;uppanel.add(label);}
                             else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
+                            if(sw == null){sw = ng.sw1;uppanel.add(sw);}
+                            else{uppanel.remove(sw);sw = ng.sw1;uppanel.add(sw);}
                             mf.revalidate();
                             mf.repaint();
 
@@ -106,6 +112,8 @@ public class Main {
                             mf.add(centerpanel,BorderLayout.CENTER);
                             if(label == null){label = ng.flag_label;uppanel.add(label);}
                             else{uppanel.remove(label);label = ng.flag_label;uppanel.add(label);}
+                            if(sw == null){sw = ng.sw1;uppanel.add(sw);}
+                            else{uppanel.remove(sw);sw = ng.sw1;uppanel.add(sw);}
                             mf.revalidate();
                             mf.repaint();
                             break;

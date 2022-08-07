@@ -1,6 +1,7 @@
 package Game;
 
 import Mine.Mine;
+import Stopwatch.Stopwatch;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;
@@ -33,6 +34,7 @@ public class Game implements MouseListener{
 
     public JPanel centerpanel = new JPanel();
     public JLabel flag_label;
+    public Stopwatch sw1;
     public Mine[][] mine_list;
     int rows;
     int columns;
@@ -45,6 +47,7 @@ public class Game implements MouseListener{
         centerpanel.setPreferredSize(new Dimension(width,depth));
         centerpanel.setBackground(blue3);
         centerpanel.setBorder(BorderFactory.createLineBorder(blue2,4));
+        sw1 = new Stopwatch(200,200,ground_color,blue3);
 
 
         switch (mode){
@@ -182,6 +185,7 @@ public class Game implements MouseListener{
     public void open_mine_in_game(int row,int column){
         switch(this.mine_list[row][column].getDistance()){
             case -1:
+                sw1.Active = false;
                 show_answer();
                 break;
             case 0:
@@ -223,6 +227,7 @@ public class Game implements MouseListener{
         }
         if(this.mine_opened == this.rows * this.columns - this.final_mine_count ){
             this.game_end = true;
+            sw1.Active = false;
             show_answer();
         }
 
@@ -272,6 +277,7 @@ public class Game implements MouseListener{
                 if(this.mine_opened == 0){
                     this.generateMines(but.row, but.column);
                     this.attempt_mines();
+                    sw1.Active = true;
                     open_mine_in_game(but.row,but.column);
                 }
 
