@@ -1,5 +1,7 @@
 import java.awt.*;
 import Game.Game;
+import Music.Music;
+import Music.Click;
 import MyComboBox.MyComboBoxEditor;
 import MyComboBox.MyComboBoxRenderer;
 import Stopwatch.Stopwatch;
@@ -51,6 +53,7 @@ public class Main {
         /* Horizontal structs for between componenets */
         Component cb_flagl = Box.createHorizontalStrut(150);
         Component flagl_sw = Box.createHorizontalStrut(20);
+        Component sw_mb = Box.createHorizontalStrut(50);
 
 
         cb.addActionListener(e -> {
@@ -208,6 +211,13 @@ public class Main {
         uppanel.setPreferredSize(new Dimension(100,150));
         uppanel.setBackground(ground_color);
 
+        downpanel.setLayout(new FlowLayout(FlowLayout.TRAILING));
+        Music nm = new Music();
+        Click nc = new Click();
+        downpanel.add(Box.createVerticalStrut(120));
+        downpanel.add(nc.click_button);
+        downpanel.add(nm.music_button);
+        downpanel.add(Box.createHorizontalStrut(30));
         downpanel.setBackground(ground_color);
         downpanel.setPreferredSize(new Dimension(100,100));
 

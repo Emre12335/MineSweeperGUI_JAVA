@@ -274,6 +274,41 @@ public class Game implements MouseListener{
             }
         }
     }
+    /* if the mine is surronded with the mines you guessed it opens all the mines around opened mine*/
+    public void open_all_around_mine(int row,int column){
+        if(this.game_end){return;}
+        int around_mine_count = this.mine_list[row][column].getDistance();
+        if(around_mine_count <= 0){return;}
+        for (int i = row-1; i <= row+1; i++) {
+            for (int j = column-1; j <= column+1; j++) {
+                if(i < 0 || j < 0 || i >= this.rows || j >= this.columns){}
+                else if(i == row && j == column){}
+                else{
+                    Mine but = this.mine_list[i][j];
+                    if(but.getVisiblty()){}
+                    else if(but.getDistance() == -1 && but.getFlag()){around_mine_count--;}
+                    else if (but.getFlag()) {return;}
+                }
+            }
+        }
+
+        if(around_mine_count != 0){}
+        else{
+            for (int i = row-1; i <= row+1; i++) {
+                for (int j = column-1; j <= column+1; j++) {
+                    if(i < 0 || j < 0 || i >= this.rows || j >= this.columns){}
+                    else if(i == row && j == column){}
+                    else{
+                        Mine but = this.mine_list[i][j];
+                        if(but.getVisiblty()){}
+                        else if(but.getDistance() == -1 && but.getFlag()){}
+                        else{open_mine_in_game(but.row, but.column);}
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -294,6 +329,7 @@ public class Game implements MouseListener{
 
                 else {open_mine_in_game(but.row, but.column);}
             }
+            /*else if(but.getVisiblty()){open_all_around_mine(but.row, but.column);}*/
         }
         else if(a == 3){
             if(!but.getFlag() && !but.getVisiblty() && !this.game_end){
