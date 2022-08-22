@@ -1,5 +1,4 @@
 package Music;
-
 import javax.swing.*;
 import java.awt.*;
 

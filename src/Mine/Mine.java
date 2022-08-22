@@ -10,6 +10,7 @@ public class Mine extends JButton {
     public int row;
 
     public Mine(int row,int column){
+        this.setFocusPainted(false);
         this.row = row;
         this.column = column;
     }

@@ -5,8 +5,12 @@ import Stopwatch.Stopwatch;
 
 import javax.swing.*;
 import javax.swing.plaf.metal.MetalButtonUI;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 
 
@@ -45,7 +49,13 @@ public class Game implements MouseListener{
     int mine_opened = 0;
 
     boolean game_end = false;
+
+
+
+
     public Game(int mode,int depth, int width){
+
+
         centerpanel.setPreferredSize(new Dimension(width,depth));
         centerpanel.setBackground(blue3);
         centerpanel.setBorder(BorderFactory.createLineBorder(blue2,4));
